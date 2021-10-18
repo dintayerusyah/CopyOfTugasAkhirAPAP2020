@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Home</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+    <!-- <nav th:replace="fragments/fragment :: navbar"></nav> -->
+    <!-- <div class="container-fluid">
+        <div class="row" style="height: 100px;">
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 rounded text-center align-middle" style="background-color: #007bff;">
+                <h1 class="headerHome">Selamat Datang di SIPELATIHAN!</h1>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row" style="margin-top: 3%; margin-bottom: 1%;">
+            <div class="col-md-12 text-center">
+                <h1>Fitur</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <a sec:authorize="hasAnyAuthority('Kepala Departemen HR', 'Kepala Bagian', 'Staff Training')" href="/pelatihan"><button class="btn btn-primary butSize">Pelatihan</button></a>
+                <a href=""><button class="btn btn-primary butSize">Dinta</button></a>
+                <a href=""><button class="btn btn-primary butSize">Hilmi</button></a>
+                <a href=""><button class="btn btn-primary butSize">Raendy</button></a>
+                <a href=""><button class="btn btn-primary butSize">Sabila</button></a>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div> -->
+
+</body>
+
+</html>

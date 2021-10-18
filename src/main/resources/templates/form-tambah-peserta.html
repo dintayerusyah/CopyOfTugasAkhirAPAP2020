@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Tambah Peserta</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <br><br>
+    <div class="container-fluid" style="">
+        <div class="row">
+            <div class="mx-auto col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 style="text-align: center;">Form Tambah Peserta</h2>
+                    </div>
+                    <div class="card-body">
+                        <form class="form" th:action="@{/peserta/tambah}" th:object="${peserta}" method="POST">
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label form-control-label">Nama</label>
+                                <div class="col-sm-8">
+                                    <input required type="text" class="form-control" name="namapeserta">
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label form-control-label">No. Telepon</label>
+                                <div class="col-sm-8">
+                                    <input required type="text" class="form-control" name="no_telepon">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label form-control-label">Alamat</label>
+                                <div class="col-sm-8">
+                                    <input required type="text" class="form-control" name="alamat">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label form-control-label">Departemen</label>
+                                <div class="col-sm-8">
+                                    <select required name="departemen" class="form-control">
+                                        <option value="">-- Pilih Departemen --</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Engineer">Engineer</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Operasional">Operasional</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-lg-12 text-center">
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    name="save"
+                                >
+                                    Simpan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div><br>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>

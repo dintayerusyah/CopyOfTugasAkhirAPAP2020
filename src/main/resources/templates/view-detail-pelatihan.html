@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Detail Pelatihan</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container-fluid">
+    <section>
+        <br>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="container" style="margin-top:30px; text-align:center">
+                    <h1>Detail Pelatihan</h1>
+                </div>
+                <div th:if="${message}!=null" class="container text-center alert alert-primary" role="alert">
+                    <h3 th:text="${message}"></h3>
+                </div>
+                </br>
+                <div  class="border border-info" style="border-radius:20px;">
+                    <div class="container" style="text-align:center;">
+                        <div class="container" style="text-align:left;">
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Nama Pelatihan</h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.namaPelatihan}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Deskripsi </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.deskripsi}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Kapasitas </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.kapasitas}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Tanggal Mulai </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.tanggalMulai}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Tanggal Selesai </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.tanggalSelesai}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Waktu Mulai </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.waktu_mulai}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Waktu Selesai </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${pelatihan.waktu_selesai}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Trainer </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${trainer.nama_trainer}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Jenis Pelatihan </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${jenisPelatihan.nama}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Pengaju </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${username_pengaju}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Penyetuju </h5>
+                                </div>
+                                <div class="col-sm"> <h5 th:text="${username_penyetuju}"></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5>Status Persetujuan </h5>
+                                </div>
+                                <div class="col-sm">
+                                    <h5 th:if="${pelatihan.status_persetujuan == 0}">Menunggu Persetujuan</h5>
+                                    <h5 th:if="${pelatihan.status_persetujuan == 1}">Ditolak</h5>
+                                    <h5 th:if="${pelatihan.status_persetujuan == 2}">Disetujui</h5>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row" style="margin-top: 2%;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h4 style="text-align:center;">Daftar Peserta Pelatihan</h4>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="text-align: right;">
+                <a th:if="${jenisPelatihan.nama == 'Onboarding'}"th:href="@{/pelatihan/import-karyawan/}+${pelatihan.idPelatihan}"><button class="btn btn-primary">Impor Karyawan Baru</button></a>
+                <a th:unless="${jenisPelatihan.nama == 'Onboarding'}"th:href="@{/pelatihan/assign-peserta/}+${pelatihan.idPelatihan}"><button class="btn btn-primary">Tambah Peserta</button></a>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 1%;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <table class="table">
+                    <thead class="bg-info">
+                    <tr class="text-white">
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Nomor Peserta</th>
+                        <th>Nomor Telepon</th>
+                        <th>Alamat</th>
+                        <th>Departemen</th>
+                        <div sec:authorize="hasAnyAuthority('Kepala Bagian')">
+                        <th>Aksi</th>
+                        </div>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr
+                            th:each="peserta, iterationStatus : ${listPeserta}"
+                    >
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${peserta.pesertaModel.namapeserta}"></td>
+                        <td th:text="${peserta.no_peserta}"></td>
+                        <td th:text="${peserta.pesertaModel.no_telepon}"></td>
+                        <td th:text="${peserta.pesertaModel.alamat}"></td>
+                        <td th:text="${peserta.pesertaModel.departemen}"></td>
+                        <div sec:authorize="hasAnyAuthority('Kepala Bagian')">
+                        <td>
+                            <form th:action="@{/pelatihan/laporanPeserta/} + ${peserta.pesertaModel.idpeserta}" method="POST">
+<!--                                <a th:href="@{/penerbangan/} + ${penerbangan.id}" class="btn btn-info">Lihat</a>-->
+<!--                                <a th:href="@{/penerbangan/ubah/} + ${penerbangan.id}" class="btn btn-warning">Ubah</a>-->
+                                <button class="btn btn-info" type="submit" value="Submit">Post Laporan</button>
+                            </form>
+<!--                            <a th:href="@{/api/v1/pelatihan/laporanPeserta/} + ${peserta.pesertaModel.idpeserta}" class="btn btn-info" method="POST">Post Laporan</a></td>-->
+                        </td>
+                        </div>
+
+                    </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+
+</html>

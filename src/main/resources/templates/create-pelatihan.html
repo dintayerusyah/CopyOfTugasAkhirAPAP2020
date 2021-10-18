@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Tambah Pelatihan</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                <h1>Form Tambah Pelatihan</h1>
+                <div th:if="${message}!=null" class="text-center alert alert-danger" role="alert">
+                    <h3 th:text="${message}"></h3>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form th:action="@{/pelatihan/tambah}" th:object="${pelatihan}" method="POST">
+                    <input type="hidden" th:field="*{idPelatihan}" />
+
+                    <div class="container-fluid">
+                        <div class="form-group row">
+                            <label for="namaPelatihanField" class="col-2 col-form-label">Nama Pelatihan</label>
+                            <div class="col-10">
+                                <input maxlength="50" required th:field="*{namaPelatihan}" class="form-control"
+                                    type="text" id="namaPelatihanField">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="deskripsiField" class="col-2 col-form-label">Deskripsi</label>
+                            <div class="col-10">
+                                <input maxlength="200" th:field="*{deskripsi}" class="form-control" type="text"
+                                    id="deskripsiField">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="kapasitas" class="col-2 col-form-label">Kapasitas</label>
+                            <div class="col-10">
+                                <input required th:field="*{kapasitas}" class="form-control" type="number"
+                                    id="kapasitas" min="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="tanggalMulaiField" class="col-2 col-form-label">Tanggal Mulai</label>
+                            <div class="col-10">
+                                <input required class="form-control" type="date" id="tanggalMulaiField"
+                                    th:field="*{tanggalMulai}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="tanggalSelesaiField" class="col-2 col-form-label">Tanggal Selesai</label>
+                            <div class="col-10">
+                                <input required class="form-control" type="date" id="tanggalSelesaiField"
+                                    th:field="*{tanggalSelesai}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="waktuMulaiField" class="col-2 col-form-label">Waktu Mulai</label>
+                            <div class="col-10">
+                                <input required class="form-control" type="time" id="waktuMulaiField"
+                                    th:field="*{waktu_mulai}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="waktuSelesaiField" class="col-2 col-form-label">Waktu Selesai</label>
+                            <div class="col-10">
+                                <input required class="form-control" type="time" id="waktuSelesaiField"
+                                    th:field="*{waktu_selesai}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="id_jenis_pelatihan" class="col-2 col-form-label">Jenis Pelatihan</label>
+                            <div class="col-10">
+                                <select required class="form-control" id="id_jenis_pelatihan"
+                                    th:name="id_jenis_pelatihan">
+                                    <option th:if="*{id_jenis_pelatihan} == null" value="" disabled selected hidden>
+                                        Pilih Jenis Pelatihan</option>
+                                    <option th:each="jenisPelatihan : ${listJenisPelatihan}"
+                                        th:value="${jenisPelatihan.id}" th:text="${jenisPelatihan.nama}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="id_trainer" class="col-2 col-form-label">Trainer</label>
+                            <div class="col-10">
+                                <select required class="form-control" id="id_trainer" th:name="id_trainer">
+                                    <option th:if="*{id_trainer} == null" value="" disabled selected hidden>Pilih
+                                        Trainer</option>
+                                    <option th:each="trainer : ${listTrainer}" th:value="${trainer.id}"
+                                        th:text="${trainer.nama_trainer}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" style="margin-top: 5%;">
+                            <div class="col text-center">
+                                <a href="/pelatihan" class="btn btn-outline-danger"
+                                    style="margin-right: 2%;">Kembali</a>
+                                <button name="simpan" type="submit" value="submit"
+                                    class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+    <title>Laporan Peserta</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul th:replace="fragments/fragment :: sidebar"></ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="fragments/fragment :: newNav(${#request.getRemoteUser()})"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="container">
+
+                    <!-- <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0"> -->
+                    <!-- Nested Row within Card Body -->
+                    <div class="card shadow ">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Laporan Peserta</h6>
+                        </div>
+                        <div class="card-body">
+<!--                            <div class="text-center">-->
+<!--                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"-->
+<!--                                     th:src="@{/img/undraw_profile_details_f8b7.svg}" alt="">-->
+<!--                            </div>-->
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Nama</th>
+                                    <td th:text="${peserta.namapeserta}"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nomor Telepon</th>
+                                    <td th:text="${peserta.no_telepon}"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Alamat</th>
+                                    <td th:text="${peserta.alamat}"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Departemen</th>
+                                    <td th:text="${peserta.departemen}"></td>
+                                </tr>
+                                <tr th:if="${responseAPI.result}!=null">
+                                    <th scope="row">ID Peserta di SIPAYROLL</th>
+                                    <td th:text="${responseAPI.result.id}"></td>
+                                </tr>
+                                <tr th:if="${responseAPI.result}!=null">
+                                    <th scope="row">Jumlah Bonus</th>
+                                    <td th:text="${responseAPI.result.jumlahBonus}"></td>
+                                </tr>
+                                <tr th:if="${responseAPI.result}!=null">
+                                    <th scope="row">Tanggal Diberikan</th>
+                                    <td th:text="${responseAPI.result.tanggalDiberikan}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- </div>
+                </div> -->
+                    <br/>
+                    <div style="color:red;font-weight:bold;" th:if="${responseAPI.result}==null">
+                        <center>Peserta tidak ditemukan di database SIPAYROLL</center>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; TA-F-1</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div th:replace="fragments/fragment :: logoutModal"></div>
+
+</body>
+
+</html>

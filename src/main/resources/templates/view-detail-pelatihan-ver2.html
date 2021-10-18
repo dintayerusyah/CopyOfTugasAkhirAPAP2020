@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+    <title>Detail Pelatihan</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul th:replace="fragments/fragment :: sidebar"></ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="fragments/fragment :: newNav(${#request.getRemoteUser()})"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="container" style="margin-top:30px; text-align:center">
+                                <h1>Detail Pelatihan</h1>
+                            </div>
+                            <div th:if="${message}!=null" class="container text-center alert alert-primary" role="alert">
+                                <h3 th:text="${message}"></h3>
+                            </div>
+                            </br>
+                            <div  class="border border-info" style="border-radius:20px;">
+                                <div class="container" style="text-align:center;">
+                                    <div class="container" style="text-align:left;">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Nama Pelatihan</h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.namaPelatihan}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Deskripsi </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.deskripsi}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Kapasitas </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.kapasitas}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Tanggal Mulai </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.tanggalMulai}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Tanggal Selesai </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.tanggalSelesai}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Waktu Mulai </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.waktu_mulai}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Waktu Selesai </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${pelatihan.waktu_selesai}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Trainer </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${trainer.nama_trainer}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Jenis Pelatihan </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${jenisPelatihan.nama}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Pengaju </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${username_pengaju}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Penyetuju </h5>
+                                            </div>
+                                            <div class="col-sm"> <h5 th:text="${username_penyetuju}"></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h5>Status Persetujuan </h5>
+                                            </div>
+                                            <div class="col-sm">
+                                                <h5 th:if="${pelatihan.status_persetujuan == 0}">Menunggu Persetujuan</h5>
+                                                <h5 th:if="${pelatihan.status_persetujuan == 1}">Ditolak</h5>
+                                                <h5 th:if="${pelatihan.status_persetujuan == 2}">Disetujui</h5>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                    <br>
+
+
+                    <div class="card shadow ">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4 class="m-0 font-weight-bold text-primary">Daftar Peserta Pelatihan</h4>
+                                </div>
+                                <div class="col-md-8" style="text-align: right;">
+                                    <a th:if="${jenisPelatihan.nama == 'Onboarding'}"th:href="@{/pelatihan/import-karyawan/}+${pelatihan.idPelatihan}"><button class="btn btn-primary">Impor Karyawan Baru</button></a>
+                                    <a th:unless="${jenisPelatihan.nama == 'Onboarding'}"th:href="@{/pelatihan/assign-peserta/}+${pelatihan.idPelatihan}"><button class="btn btn-primary" style="margin:20px">Tambah Peserta</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Nomor Peserta</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Alamat</th>
+                                    <th>Departemen</th>
+                                    <div sec:authorize="hasAnyAuthority('Kepala Bagian')">
+                                        <th>Aksi</th>
+                                    </div>
+                                </tr>
+                                <tbody>
+                                <tr
+                                        th:each="peserta, iterationStatus : ${listPeserta}"
+                                >
+                                    <td th:text="${iterationStatus.count}"></td>
+                                    <td th:text="${peserta.pesertaModel.namapeserta}"></td>
+                                    <td th:text="${peserta.no_peserta}"></td>
+                                    <td th:text="${peserta.pesertaModel.no_telepon}"></td>
+                                    <td th:text="${peserta.pesertaModel.alamat}"></td>
+                                    <td th:text="${peserta.pesertaModel.departemen}"></td>
+                                    <div sec:authorize="hasAnyAuthority('Kepala Bagian')">
+                                        <td>
+                                            <form th:action="@{/pelatihan/laporanPeserta/} + ${peserta.pesertaModel.idpeserta}" method="POST">
+                                                <button class="btn btn-info" type="submit" value="Submit">Post Laporan</button>
+                                            </form>
+                                        </td>
+                                    </div>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; TA-F-1</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div th:replace="fragments/fragment :: logoutModal"></div>
+
+</body>
+
+</html>

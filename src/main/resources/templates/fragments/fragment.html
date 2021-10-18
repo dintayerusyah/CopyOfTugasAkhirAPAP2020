@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Home</title>
+
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <!-- Custom fonts for this template-->
+        <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+    </head>
+
+    <head th:fragment="js">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+
+        <!-- Core plugin JavaScript -->
+        <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+        <!-- Custom scripts for all pages -->
+        <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+    </head>
+</head>
+
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand font-weight-bold" style="color: azure;" href="/">SIPELATIHAN</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <a sec:authorize="hasAnyAuthority('Kepala Departemen HR', 'Kepala Bagian', 'Staff Training')"
+                    class="nav-item nav-link active" href="/pelatihan">
+                    Pelatihan<span class="sr-only">(current)</span>
+                </a>
+                <a sec:authorize="hasAnyAuthority('Staff Training')" class="nav-item nav-link active"
+                    href="/trainer/view">
+                    Trainer<span class="sr-only"></span>
+                </a>
+                <a class="nav-item nav-link active" href="/peserta/tambah">
+                    Tambah Peserta<span class="sr-only">(current)</span>
+                </a>
+                <a class="nav-item nav-link active" href="">
+                    D<span class="sr-only">(current)</span>
+                </a>
+                <a class="nav-item nav-link active" href="">
+                    E<span class="sr-only">(current)</span>
+                </a>
+            </ul>
+
+            <ul class="navbar-nav pull-right">
+                <a sec:authorize="hasAuthority('Kepala Bagian')" class="nav-item nav-link active"
+                    th:href="@{/user/signup}">Create Account</a>
+                <a class="nav-item nav-link active" th:href="@{/user/profile}">Profile</a>
+            </ul>
+        </div>
+    </nav>
+    <ul th:fragment="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fa fa-plane"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">SI-PELATIHAN</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="/">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Homepage</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Pages
+        </div>
+
+        <li sec:authorize="hasAnyAuthority('Kepala Departemen HR', 'Kepala Bagian', 'Staff Training')" class="nav-item">
+            <a class="nav-link" href="/pelatihan">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Pelatihan</span></a>
+        </li>
+        <li class="nav-item">
+            <a sec:authorize="hasAnyAuthority('Staff Training')" class="nav-link" href="/trainer/view">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Trainer</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/peserta/tambah">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tambah Peserta</span></a>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+    </ul>
+    <nav th:fragment="newNav(nama_pengguna)"
+        class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+        </button>
+
+
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="${nama_pengguna}"></span>
+                    <img class="img-profile rounded-circle" th:src="@{/img/undraw_profile.svg}">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" th:href="@{/user/profile}">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a>
+                    <a sec:authorize="hasAnyAuthority('Kepala Bagian')" class="dropdown-item" th:href="@{/user/signup}">
+                        <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Create Account
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+
+    </nav>
+    <div th:fragment="logoutModal" class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

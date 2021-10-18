@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Assign Peserta</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                <h3 th:text="'Assign Peserta untuk Pelatihan: '+${pelatihan.namaPelatihan}"></h3>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2"></div>
+            <div id="divKapasitas" class="col-md-8 text-center alert alert-success" role="alert">
+                <h4 id="kapasitas">
+
+                </h4>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-12">
+                    <form th:action="@{/pelatihan/assign-peserta}" method="POST" th:object="${pelatihan}">
+                        <input type="hidden" th:field="*{idPelatihan}">
+                        <input type="hidden" th:field="*{namaPelatihan}">
+                        <input type="hidden" th:field="*{kapasitas}">
+                        <input type="hidden" th:field="*{waktu_mulai}">
+                        <input type="hidden" th:field="*{tanggalMulai}">
+                        <input type="hidden" th:field="*{waktu_selesai}">
+                        <input type="hidden" th:field="*{tanggalSelesai}">
+                        <input type="hidden" th:field="*{uuid_pengaju}">
+                        <input type="hidden" th:field="*{id_jenis_pelatihan}">
+                        <input type="hidden" th:field="*{id_trainer}">
+                        <input type="hidden" th:field="*{list_peserta}">
+                        
+                        <input type="hidden" name="list_assign_peserta">
+                        <table id="table" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Nama</th>
+                                    <th class="text-center">Departemen</th>
+                                    <th class="text-center">Assign</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="peserta, iterstat : ${listPeserta}">
+                                    <td class="text-center" th:text="${peserta.idpeserta}"></td>
+                                    <td class="text-center" th:text="${peserta.namapeserta}"></td>
+                                    <td class="text-center" th:text="${peserta.departemen}"></td>
+                                    <td>
+                                        <input th:name="peserta + ${iterstat.index}" th:value="${peserta.idpeserta}"
+                                            type="checkbox" class="form-control assign">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <input id="tombolSubmit" type="submit" value="Assign" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            $('#table').DataTable();
+            
+            // init tombol submit disabled karena belum ada yang terpilih 
+            $("#tombolSubmit").prop("disabled",true);
+
+            // init value kapasitas tersisa
+            var kapasitas = /*[[${kapasitasTersisa}]]*/;
+            $('#kapasitas').text("Kapasitas Tersedia: "+kapasitas);
+            const pesertaAssign = [];
+            $("input[type='checkbox']").change(function () {
+                if (this.checked) {
+                    pesertaAssign.push($(this).attr("value"))
+                    kapasitas--;
+                }
+                else {
+                    for (let i = 0; i < pesertaAssign.length; i++) {
+                        const element = pesertaAssign[i];
+                        if(element == $(this).attr("value")){
+                            pesertaAssign.splice(i,1);
+                        }
+                    }
+                    kapasitas++;
+                }
+                // kapasitas
+                $('#kapasitas').text((kapasitas<0) ? "Kapasitas Tersedia: "+0 : "Kapasitas Tersedia: "+kapasitas);
+                if(kapasitas<1){
+                    $("#divKapasitas").attr("class", "col-md-8 text-center alert alert-danger");
+                }
+                else{
+                    $("#divKapasitas").attr("class", "col-md-8 text-center alert alert-success");
+                }
+
+                // list peserta
+                $("input[name='list_assign_peserta']").val(pesertaAssign);
+
+                // tombol submit disable kalo kapasitasnya negatif dan belum ada yang kecek
+                if(kapasitas<0 || pesertaAssign.length==0){
+                    $("#tombolSubmit").prop("disabled",true);
+                }
+                else{
+                    $("#tombolSubmit").prop("disabled",false);
+                }
+                console.log(pesertaAssign);
+            })
+        });
+    </script>
+
+</body>
+
+</html>

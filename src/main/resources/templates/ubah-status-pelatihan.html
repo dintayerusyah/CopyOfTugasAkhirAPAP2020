@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Ubah Pelatihan</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+                <h1>Form Ubah Pelatihan</h1>
+                <div th:if="${message}!=null" class="text-center alert alert-success" role="alert">
+                    <h3 th:text="${message}"></h3>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form th:action="@{/pelatihan/}" th:object="${pelatihan}" method="POST">
+                    <input type="hidden" th:field="*{idPelatihan}" />
+                    <input type="hidden" th:field="*{namaPelatihan}" />
+                    <input type="hidden" th:field="*{deskripsi}" />
+                    <input type="hidden" th:field="*{kapasitas}" />
+                    <input type="hidden" th:field="*{tanggalMulai}" />
+                    <input type="hidden" th:field="*{tanggalSelesai}" />
+                    <input type="hidden" th:field="*{waktu_mulai}" />
+                    <input type="hidden" th:field="*{waktu_selesai}" />
+                    <input type="hidden" th:field="*{id_jenis_pelatihan}" />
+                    <input type="hidden" th:field="*{id_trainer}" />
+                    
+                    
+                        <div class="form-group row">
+                            <label for="waktuMulaiField" class="col-2 col-form-label">Status Persetujuan</label>
+                            <div class="col-10">
+                                <select class="form-control" th:field="*{status_persetujuan}">
+                                    <option th:value="0">Menunggu Persetujuan</option>
+                                    <option th:value="1">Ditolak</option>
+                                    <option th:value="2">Disetujui</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row" style="margin-top: 5%;">
+                            <div class="col text-center">
+                                <a href="/pelatihan" class="btn btn-outline-danger"
+                                    style="margin-right: 2%;">Kembali</a>
+                                <button name="simpan" type="submit" value="submit"
+                                    class="btn btn-success">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Homepage</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul th:replace="fragments/fragment :: sidebar"></ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/fragment :: newNav(${#request.getRemoteUser()})"></nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+
+                    <!-- INPUT HEREE !!! -->
+
+
+                    <!-- Page Heading -->
+                    <!-- <h1 class="h3 mb-4 text-gray-800">Homepage</h1> -->
+                    <!-- Header -->
+                    <header id="header" class="header">
+                        <div class="header-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="text-container">
+                                            <h1><span class="turquoise">WELCOME TO</span> SIPELATIHAN,</h1>
+                                            <h2 class="text-left" th:text="${#request.getRemoteUser()}"></h2>
+                                            <br>
+                                            <a class="btn-solid-lg page-scroll" href="#about">Our Team</a>
+                                        </div> <!-- end of text-container -->
+                                    </div> <!-- end of col -->
+                                    <div class="col-lg-6">
+                                        <div class="image-container">
+                                            <img class="img-fluid" src="img/header-teamwork.svg" alt="alternative">
+                                        </div> <!-- end of image-container -->
+                                    </div> <!-- end of col -->
+                                </div> <!-- end of row -->
+                            </div> <!-- end of container -->
+                        </div> <!-- end of header-content -->
+                    </header> <!-- end of header -->
+                    <!-- end of header -->
+
+                    <!-- About -->
+                    <div id="about" class="basic-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2>About The Team</h2>
+                                    <p class="p-heading p-large"></p>
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <!-- Team Member -->
+                                    <div class="team-member">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid" src="img/team-member-1.svg" alt="alternative">
+                                        </div> <!-- end of image-wrapper -->
+                                        <p class="p-large"><strong>Hilmi Arista</strong></p>
+                                        <p class="job-title">1806147003</p>
+                                        <span class="social-icons">
+                                            <span class="fa-stack">
+                                                <a href="https://www.linkedin.com/in/hilmi-arista-b317001b1/">
+                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                                </a>
+                                            </span>
+                                        </span> <!-- end of social-icons -->
+                                    </div> <!-- end of team-member -->
+                                    <!-- end of team member -->
+
+                                    <!-- Team Member -->
+                                    <div class="team-member">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid" src="img/team-member-2.svg" alt="alternative">
+                                        </div> <!-- end of image wrapper -->
+                                        <p class="p-large"><strong>Muhammad Erlangga</strong></p>
+                                        <p class="job-title">1806147060</p>
+                                        <span class="social-icons">
+                                            <span class="fa-stack">
+                                                <a href="https://www.linkedin.com/in/muhammad-e-80254613b/">
+                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                                </a>
+                                            </span>
+                                        </span> <!-- end of social-icons -->
+                                    </div> <!-- end of team-member -->
+                                    <!-- end of team member -->
+
+                                    <!-- Team Member -->
+                                    <div class="team-member">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid" src="img/team-member-3.svg" alt="alternative">
+                                        </div> <!-- end of image wrapper -->
+                                        <p class="p-large"><strong>Eldinta Yerusyah T</strong></p>
+                                        <p class="job-title">1706984575</p>
+                                        <span class="social-icons">
+                                            <span class="fa-stack">
+                                                <a href="https://www.linkedin.com/in/eldinta-yerusyah">
+                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                                </a>
+                                            </span>
+                                        </span> <!-- end of social-icons -->
+                                    </div> <!-- end of team-member -->
+                                    <!-- end of team member -->
+
+                                    <!-- Team Member -->
+                                    <div class="team-member">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid" src="img/team-member-2.svg" alt="alternative">
+                                        </div> <!-- end of image wrapper -->
+                                        <p class="p-large"><strong>Raendy Andhika E</strong></p>
+                                        <p class="job-title">1706043840</p>
+                                        <span class="social-icons">
+                                            <span class="fa-stack">
+                                                <a href="https://www.linkedin.com/in/raendy-andhika-e-228990117/">
+                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                                </a>
+                                            </span>
+                                        </span> <!-- end of social-icons -->
+                                    </div> <!-- end of team-member -->
+                                    <!-- end of team member -->
+
+                                    <!-- Team Member -->
+                                    <div class="team-member">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid" src="img/team-member-4.svg" alt="alternative">
+                                        </div> <!-- end of image wrapper -->
+                                        <p class="p-large"><strong>Sabila Nurwardani </strong></p>
+                                        <p class="job-title">1806147155</p>
+                                        <span class="social-icons">
+                                            <span class="fa-stack">
+                                                <a href="https://www.linkedin.com/in/nurwardanis13/">
+                                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                                    <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                                </a>
+                                            </span>
+                                        </span> <!-- end of social-icons -->
+                                    </div> <!-- end of team-member -->
+                                    <!-- end of team member -->
+                    
+
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of container -->
+                    </div> <!-- end of basic-4 -->
+                    <!-- end of about -->
+
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; TA-F-1</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div th:replace="fragments/fragment :: logoutModal"></div>
+    
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../static/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

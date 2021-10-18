@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<head>
+    <title>Laporan Peserta</title>
+    <object th:include="fragments/fragment :: css " th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js " th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        Laporan Peserta
+                    </h1>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3%;">
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Nama</th>
+                        <td th:text="${peserta.namapeserta}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nomor Telepon</th>
+                        <td th:text="${peserta.no_telepon}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Alamat</th>
+                        <td th:text="${peserta.alamat}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Departemen</th>
+                        <td th:text="${peserta.departemen}"></td>
+                    </tr>
+                    <tr th:if="${responseAPI.result}!=null">
+                        <th scope="row">ID Peserta di SIPAYROLL</th>
+                        <td th:text="${responseAPI.result.id}"></td>
+                    </tr>
+                    <tr th:if="${responseAPI.result}!=null">
+                        <th scope="row">Jumlah Bonus</th>
+                        <td th:text="${responseAPI.result.jumlahBonus}"></td>
+                    </tr>
+                    <tr th:if="${responseAPI.result}!=null">
+                        <th scope="row">Tanggal Diberikan</th>
+                        <td th:text="${responseAPI.result.tanggalDiberikan}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="color:red" th:if="${responseAPI.result}==null">
+                <center>Peserta tidak ditemukan di database SIPAYROLL</center>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+</body>
+
+</html>

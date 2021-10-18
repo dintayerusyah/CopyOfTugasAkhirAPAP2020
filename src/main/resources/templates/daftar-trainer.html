@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Trainer</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <style>
+        .container-fluid{
+            margin : 30px;
+            padding : 5px;
+            max-width: 60%;
+            position: absolute;
+            left: 18%;
+            right:20%;
+        }
+
+        .itemNav{
+            width: 70px;
+            border-radius: 5px;
+            margin-right: 3px;
+        }
+
+        .buffer{
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<ul th:replace="fragments/fragment :: navbar"></ul>
+<div class="container-fluid">
+    <h2 class="text-center">Daftar Trainer</h2>
+    <div class="row"><a href="/trainer/tambah" class="buffer btn btn-info"> + tambah trainer</a></div>
+    <div class="row">
+        <table class="table">
+            <thead class="bg-info text-white">
+            <tr>
+                <th>No</th>
+                <th>Nomor KTP</th>
+                <th>Nama Trainer</th>
+                <th>Nomor Telepon</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="table-striped">
+            <tr th:each="trainer, status : ${listTrainer}">
+                <td th:text="${status.count}"></td>
+                <td th:text="${trainer.noKtp}"></td>
+                <td th:text="${trainer.nama_trainer}"></td>
+                <td th:text="${trainer.no_telepon}"></td>
+                <td th:text="${trainer.email}"></td>
+                <td id="aksi" class="d-flex justify-content-lg-center">
+                    <a th:href="@{/trainer/ubah/} + ${trainer.id}" class="itemNav btn btn-warning text-white">Ubah</a>
+                    <a th:href="@{/trainer/hapus/} + ${trainer.id}" class="itemNav btn btn-danger text-white">Hapus</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
